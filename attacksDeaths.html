@@ -1,0 +1,132 @@
+<head>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--Semantic UI-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+</head>
+
+<body>
+<div id = blah></div>
+<div class = "ui right aligned container">
+    <h1>About</h1>
+</div>
+<div class = "ui fluid container">
+    <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id = "graph"> </div>
+</div>
+<script>
+
+    var dates = ["19-Aug-1854", "20-Aug-1854", "21-Aug-1854", "22-Aug-1854", "23-Aug-1854",
+        "24-Aug-1854", "25-Aug-1854", "26-Aug-1854", "27-Aug-1854", "28-Aug-1854",
+        "29-Aug-1854", "30-Aug-1854", "31-Aug-1854", "1-Sep-1854", "2-Sep-1854",
+        "3-Sep-1854", "4-Sep-1854", "5-Sep-1854", "6-Sep-1854", "7-Sep-1854",
+        "8-Sep-1854", "9-Sep-1854", "10-Sep-1854", "11-Sep-1854", "12-Sep-1854",
+        "13-Sep-1854", "14-Sep-1854", "15-Sep-1854", "16-Sep-1854", "17-Sep-1854",
+        "18-Sep-1854", "19-Sep-1854", "20-Sep-1854", "21-Sep-1854", "22-Sep-1854",
+        "23-Sep-1854", "24-Sep-1854", "25-Sep-1854", "26-Sep-1854", "27-Sep-1854",
+        "28-Sep-1854", "29-Sep-1854"];
+
+    trace1 = [{
+        type: 'scatter',
+        x: dates,
+        y: [1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 8, 56,
+            143, 116, 54, 46, 36, 20, 28, 12, 11, 5,
+            5, 1, 3, 0, 1, 4, 2, 3, 0, 0, 2, 1, 1, 1,
+            1, 1, 1, 0, 0],
+        mode: 'lines',
+        name: 'Attacks'
+
+    }];
+
+
+    trace2 = {
+        type: 'scatter',
+        x: dates,
+        y: [1,0,2,0,0,2,0,0,1,0,1,2,3,70,127,76,71,
+            45,37,32,30,24,18,15,6,13,6,8,6,5,2,3,0,
+            0,2,3,0,0,2,0,2,1 ],
+        mode: 'lines',
+        name: 'Deaths'
+
+    };
+
+    trace3 = {
+        type: 'scatter',
+        x: dates,
+        y: [1,2,3,3,4,5,5,6,7,8,9,17,73,216,332,386,
+            432,468,488,516,528,539,544,549,550,553,
+            553,554,558,560,563,563,563,565,566,567,
+            568,569,570,571,571,571],
+        mode: 'lines',
+        name: 'Total Attacks'
+
+    };
+
+    trace4 = {
+        type: 'scatter',
+        x: dates,
+        y: [1,1,3,3,3,5,5,5,6,6,7,9,12,82,209,285,356,
+            401,438,470,500,524,542,557,563,576,582,590,
+            596,601,603,606,606,606,608,611,611,611,613,
+            613,615,616],
+        mode: 'lines',
+        name: 'Total Deaths'
+
+
+    };
+
+
+
+    var tableValues = [
+        [ "19-Aug-1854", "20-Aug-1854", "21-Aug-1854", "22-Aug-1854", "23-Aug-1854",
+            "24-Aug-1854", "25-Aug-1854", "26-Aug-1854", "27-Aug-1854", "28-Aug-1854",
+            "29-Aug-1854", "30-Aug-1854", "31-Aug-1854", "1-Sep-1854", "2-Sep-1854",
+            "3-Sep-1854", "4-Sep-1854", "5-Sep-1854", "6-Sep-1854", "7-Sep-1854",
+            "8-Sep-1854", "9-Sep-1854", "10-Sep-1854", "11-Sep-1854", "12-Sep-1854",
+            "13-Sep-1854", "14-Sep-1854", "15-Sep-1854", "16-Sep-1854", "17-Sep-1854",
+            "18-Sep-1854", "19-Sep-1854", "20-Sep-1854", "21-Sep-1854", "22-Sep-1854",
+            "23-Sep-1854", "24-Sep-1854", "25-Sep-1854", "26-Sep-1854", "27-Sep-1854",
+            "28-Sep-1854", "29-Sep-1854"],
+        [1,1,1,0,1,1,0,1,1,1,1,8,56,143,116,54,46,36,20,28,12,11,5,5,1,3,0,1,4,2,3,0,0,2,1,1,1,1,1,1,0,0 ],
+        [1,0,2,0,0,2,0,0,1,0,1,2,3,70,127,76,71,45,37,32,30,24,18,15,6,13,6,8,6,5,2,3,0,0,2,3,0,0,2,0,2,1],
+        [1,2,3,3,4,5,5,6,7,8,9,17,73,216,332,386,432,468,488,516,528,539,544,549,550,553,553,554,558,560,563,563,563,565,566,567,568,569,570,571,571,571],
+        [1,1,3,3,3,5,5,5,6,6,7,9,12,82,209,285,356,401,438,470,500,524,542,557,563,576,582,590,596,601,603,606,606,606,608,611,611,611,613,613,615,616]
+    ];
+
+
+    var tableData = [{
+
+        type: 'table',
+        header: {
+            values:[["Date"], ["Attacks"], ["Deaths"], ["Total Attacks"], ["Total Deaths"]],
+            align: "center",
+            fill: {color: 'grey'},
+            font: {family: "Arial", size: 12, color: "white"}
+        },
+        cells: {
+            values: tableValues,
+            align: "center",
+            line: {color: "black", width: 1},
+            font: {family: "Arial", size: 11, color: ["black"]}
+        }
+
+
+    }];
+
+    var data = [trace1, trace2, trace3, trace4];
+
+    var layout = {
+        title: 'Cholera Deaths and Attacks in 1854',
+        xaxis: {
+            title: 'Date'
+        },
+        yaxis: {
+            title: '# of Occurences'
+        }
+    };
+
+
+    Plotly.plot('graph', tableData);
+    Plotly.newPlot('myDiv', data, layout);
+</script>
+</body>

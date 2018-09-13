@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <head>
+        <!-- Plotly.js -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!--Semantic UI-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+    </head>
+
+</head>
+<body>
+<button onclick="displayBar()">MALE</button>
+    <div id="maleDiv"> <!--Male fatalities by age--> </div>
+<div id="femaleDiv"> <!--Female fatalities by age--></div>
+<div id="graph"> <!-- Table --> </div>
+
+
+<script>
+
+    function displayBar(){
+
+        var x = document.getElementById("maleDiv");
+        if(x.style.display === "none"){
+            x.style.display = "block";
+        }
+        else {
+            x.style.display = "none";
+        }
+    }
+    var maleBarData = [
+        {
+            x: ["0-1" ,"2-5","6-10","11-14","16-20","21-40","41-60","61-80","over 80"],
+            y: [8.2,14,12.1,7.8,7.2,12.1,13.7,20.5,39.6],
+            type: 'bar'
+        }
+    ];
+
+    var femaleBarData = [
+        {
+            x: ["0-1" ,"2-5","6-10","11-14","16-20","21-40","41-60","61-80","over 80"],
+            y: [8.9,14.7,11.2,7.1,7.2,11.8,12.9,20.5,37.8],
+            type: 'bar'
+        }
+    ];
+
+    var values = [
+        ["0-1" ,"2-5","6-10","11-14","16-20","21-40","41-60","61-80","over 80"],
+        [8.2,14,12.1,7.8,7.2,12.1,13.7,20.5,39.6],
+        [8.9,14.7,11.2,7.1,7.2,11.8,12.9,20.5,37.8]
+        ];
+
+    var data = [{
+        type: 'table',
+        header: {
+            values: [["Age Range"], ["Male"],
+                ["Female"]],
+            align: "center",
+            line: {width: 1, color: 'black'},
+            fill: {color: "grey"},
+            font: {family: "Arial", size: 12, color: "white"}
+        },
+        cells: {
+            values: values,
+            align: "center",
+            line: {color: "black", width: 1},
+            font: {family: "Arial", size: 11, color: ["black"]}
+        }
+    }];
+    Plotly.newPlot('maleDiv', maleBarData);
+    Plotly.newPlot('femaleDiv', femaleBarData);
+    Plotly.plot('graph', data);
+</script>
+</body>
+</html>
