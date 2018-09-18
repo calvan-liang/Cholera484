@@ -11,11 +11,160 @@
     <h1>About</h1>
 </div>
 <div class = "ui fluid container">
-    <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
-    <div id = "graph"> </div>
+    <div id="line"><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id = "table"> </div>
 </div>
 <script>
 
+
+    Plotly.d3.tsv("https://raw.githubusercontent.com/idemello/Cholera484/master/choleraDeaths.tsv", function(err, rows){
+
+        function unpack(rows, key) {
+            return rows.map(function(row) { return row[key]; });
+        }
+
+        var headerNames = Plotly.d3.keys(rows[0]);
+
+        var headerValues = [];
+        var cellValues = [];
+        var attackTotals = ["1"];
+        var deathTotals = ["1"];
+        var attackValue;
+        var deathValue;
+        for (i = 0; i < headerNames.length; i++) {
+            headerValue = [headerNames[i]];
+            headerValues[i] = headerValue;
+            cellValue = unpack(rows, headerNames[i]);
+            cellValues[i] = cellValue;
+        }
+
+        // clean date
+        for (i = 0; i < cellValues[1].length; i++) {
+            var dateValue = cellValues[1][i].split(' ')[0];
+            cellValues[1][i] = dateValue;
+        }
+
+        for(i = 1; i< cellValues[1].length; i++){
+            attackTotals[i] = parseInt(cellValues[1][i], 10) + parseInt(attackTotals[i-1], 10);
+            attackTotals[i] = attackTotals[i].toString();
+            deathTotals[i] = parseInt(cellValues[2][i], 10) + parseInt(deathTotals[i-1], 10);
+            deathTotals[i] = deathTotals[i].toString();
+        }
+
+
+        /* Totals debug
+        *
+        *
+        *
+        for(i = 0; i < cellValues[1].length; i++){
+            console.log(attackTotals[i] + "\n");
+        }
+
+
+        for(i = 0; i < cellValues[1].length; i++){
+            console.log(deathTotals[i] + "\n");
+        }
+    */
+
+        var data = [{
+            type: 'table',
+            columnwidth: [200,500,600,600,400,400,600,600,600],
+            columnorder: [0,1,2,3,4,5,6,7,8,9],
+            header: {
+                values: headerValues,
+                align: "center",
+                line: {width: 1, color: 'rgb(50, 50, 50)'},
+                fill: {color: ['rgb(235, 100, 230)']},
+                font: {family: "Arial", size: 11, color: "white"}
+            },
+            cells: {
+                values: cellValues,
+                align: ["center", "center"],
+                line: {color: "black", width: 1},
+                fill: {color: ['rgba(228, 222, 249, 0.65)','rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)']},
+                font: {family: "Arial", size: 10, color: ["black"]}
+            }
+        }];
+
+        console.log(cellValues[0]);
+        trace1 = {
+
+            x: cellValues[0],
+            y: cellValues[1],
+            mode: 'lines',
+            name: 'Attacks per Day'
+
+        };
+
+        trace2 = {
+
+            x: cellValues[0],
+            y: cellValues[2],
+            mode: 'lines',
+            name: 'Deaths per Day'
+
+        };
+
+        trace3 = {
+
+            x: cellValues[0],
+            y: attackTotals,
+            mode: 'lines',
+            name: 'Total Attacks'
+        };
+
+        trace4 = {
+
+            x: cellValues[0],
+            y: deathTotals,
+            mode: 'lines',
+            name: 'Total Deaths'
+        };
+
+
+        var lineData = [trace1, trace2, trace3, trace4];
+
+        var layout = {
+            title: "Bitcoin mining stats for 180 days"
+        };
+
+        var lineLayout = {
+            title: 'Title of the Graph',
+            xaxis: {
+                title: 'x-axis title'
+            },
+            yaxis: {
+                title: 'y-axis title'
+            }
+        };
+
+
+        Plotly.plot('line', lineData, lineLayout);
+        Plotly.plot('table', data, layout);
+    });
+   /* Plotly.d3.csv(""),
+        function(err, rows){
+
+            function unpack(rows, key) {
+                return rows.map(function(row) {return row[key];});
+
+        }
+
+        var headerNames = Plotly.d3.keys(rows[0]);
+        var headerValues = [];
+        var cellValues = [];
+        for (i=0; i< headerNames.length; i++){
+            headerValue = [headerNames[i]];
+            headerValues[i] = headerValue;
+            cellValue = unpack(rows, headerNames[i]);
+            cellValues[i] = cellValue;
+        }
+
+
+        }
+
+        */
+/*
     var dates = ["19-Aug-1854", "20-Aug-1854", "21-Aug-1854", "22-Aug-1854", "23-Aug-1854",
         "24-Aug-1854", "25-Aug-1854", "26-Aug-1854", "27-Aug-1854", "28-Aug-1854",
         "29-Aug-1854", "30-Aug-1854", "31-Aug-1854", "1-Sep-1854", "2-Sep-1854",
@@ -128,5 +277,6 @@
 
     Plotly.plot('graph', tableData);
     Plotly.newPlot('myDiv', data, layout);
+    */
 </script>
 </body>
