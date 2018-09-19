@@ -14,9 +14,30 @@
 </head>
 <body>
 
+<div class="ui raised very padded text five column divided grid">
+    <div class="row">
+        <div class=" ui huge header column">
+            <a href =attacksDeaths.html>Attacks and Deaths</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =naples.html>Naples Age Data</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =UKCensus.html.html>UK Census Data</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =map.html>Map Data</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =about.html>About</a>
+        </div>
+
+    </div>
+</div>
+
 <div id = "malePie"></div>
 <div id = "femalePie"></div>
-
+<div id = "totalPie"></div>
 <div id = "table"></div>
 
 <script>
@@ -26,6 +47,10 @@
             return rows.map(function (row) {
                 return row[key];
             });
+        }
+
+        function add(a,b){
+            return parseInt(a, 10) + parseInt(b, 10);
         }
 
         var headerNames = Plotly.d3.keys(rows[3]);
@@ -48,6 +73,12 @@
 
         var maleValues = cellValues[1].slice(0);
         var femaleValues = cellValues[2].slice(0);
+
+
+        var totalMales = maleValues.reduce(add, 0);
+        var totalFemales = femaleValues.reduce(add, 0);
+        var total = [totalMales, totalFemales];
+
 
         console.log(cellValues[0]);
         console.log(maleValues);
@@ -85,6 +116,14 @@
             type: 'pie'
         }];
 
+
+        var totalPieData = [{
+            values: total,
+            labels: ['Male', 'Female'],
+            type: 'pie'
+        }];
+
+
         var fLayout = {
             title: 'Female',
             height: 400,
@@ -95,6 +134,13 @@
             title: 'Male',
             height: 400,
             width: 500
+        };
+
+        var tLayout = {
+            title: 'Males v. Females',
+            height: 400,
+            width: 500
+
         };
 
         /*
@@ -140,6 +186,7 @@
         */
         Plotly.newPlot('malePie', malePieData, mLayout);
         Plotly.newPlot('femalePie', femalePieData, fLayout);
+        Plotly.newPlot('totalPie', totalPieData, tLayout);
         Plotly.plot('table', data);
 
     })

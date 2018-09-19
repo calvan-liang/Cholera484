@@ -6,9 +6,31 @@
 </head>
 
 <body>
-<div id = blah></div>
-<div class = "ui right aligned container">
-    <h1>About</h1>
+
+<div class="ui raised very padded text five column divided grid">
+    <div class="row">
+        <div class=" ui huge header column">
+            <a href =attacksDeaths.html>Attacks and Deaths</a>
+            <div class ="sub header">Table and line chart showing the number of deaths/attacks and their totals over time</div>
+        </div>
+        <div class=" ui huge header column">
+            <a href =naples.html>Naples Age Data</a>
+            <div class ="sub header">A bar chart of another cholera outbreak in Naples during the same time period</div>
+        </div>
+        <div class=" ui huge header column">
+            <a href =UKCensus.html>UK Census Data</a>
+            <div class ="sub header">A pie chart of UK census data during the cholera outbreak</div>
+        </div>
+        <div class=" ui huge header column">
+            <a href =map.html>Map Data</a>
+            <div class ="sub header">A map of current day London overlaid with cholera death by location </div>
+        </div>
+        <div class=" ui huge header column">
+            <a href =about.html>About</a>
+            <div class ="sub header">About the author, software, and data</div>
+        </div>
+
+    </div>
 </div>
 <div class = "ui fluid container">
     <div id="line"><!-- Plotly chart will be drawn inside this DIV --></div>
@@ -76,8 +98,8 @@
         var data = [{
 
             type: 'table',
-            columnwidth: [200,500,600,600,400,400,600,600,600],
-            columnorder: [0,1,2,3,4,5,6,7,8,9],
+            columnwidth: [200,200,200,200],
+            columnorder: [0,1,2,3,4],
             header: {
                 values: headerValues,
                 align: "center",
@@ -134,7 +156,7 @@
         var lineData = [trace1, trace2, trace3, trace4];
 
         var layout = {
-            title: "Bitcoin mining stats for 180 days"
+            title: "Exhibition of Symptons and Deaths Caused by Cholera from August 19th, 1854 to September 29th 1854"
         };
 
         var lineLayout = {

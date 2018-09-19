@@ -12,6 +12,28 @@
 
 </head>
 <body>
+
+<div class="ui raised very padded text five column divided grid">
+    <div class="row">
+        <div class=" ui huge header column">
+            <a href =attacksDeaths.html>Attacks and Deaths</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =naples.html>Naples Age Data</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =UKCensus.html.html>UK Census Data</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =map.html>Map Data</a>
+        </div>
+        <div class=" ui huge header column">
+            <a href =about.html>About</a>
+        </div>
+
+    </div>
+</div>
+
 <div style = "position: absolute; top: 0; right: 0; bottom: 0; left: 0;" id = "myDiv"></div>
 <script>
 
@@ -56,23 +78,19 @@
                 //console.log(rows[0]['Deaths']);
 
 
-                var scl = [[0, 'rgb(255,255,255)'], [1, 'rgb(26, 255, 0)'], [2, 'rgb(154, 255, 0)'], [5, 'rgb(44, 255, 150)'], [10, 'rgb(0, 25, 255)'], [15, 'rgb((255, 102, 0)'], [20, 'rgb(255,0,0)']];
-
+            scl = [[0, 'rgb(150,0,90)'],[2, 'rgb(0, 0, 200)'],[4,'rgb(0, 25, 255)'],[6,'rgb(0, 152, 255)'],[8,'rgb(44, 255, 150)'],[10,'rgb(151, 255, 0)'],[12,'rgb(255, 234, 0)'],[14,'rgb(255, 111, 0)'],[16,'rgb(255, 0, 0)']];
                 var data = [{
                     type: 'scattermapbox',
                     mode: 'markers',
                     text: unpack(rows, 'Deaths'),
                     lon: unpack(rows, 'PumpLon'),
                     lat: unpack(rows, 'PumpLat'),
-                    pumpLon: pumpLocLon,
-                    pumpLat: pumpLocLat,
-
                     marker: {
                         color: unpack(rows, 'Deaths'),
                         colorscale: scl,
                         cmin: 0,
                         cmax: 20,
-                        reversescale: true,
+                        //reversescale: true,
                         opacity: 0.5,
                         size: 10,
                         colorbar: {
@@ -83,7 +101,7 @@
                             ticklen: 3,
                             shoticksuffix: 'last',
                             ticksuffix: ' deaths',
-                            dtick: 3
+                            dtick: 1
                         }
                     },
                     name: 'NA Precipitation'
@@ -119,7 +137,6 @@
 
                 Plotly.newPlot('myDiv', data, layout);
             })
-        })
     });
       /*
 
