@@ -85,44 +85,7 @@
             //console.log(rows[0]['Deaths']);
 
 
-            var scl = [[0, "#a50026"], [0.1, "#d73027"],
-                [
-                    0.2,
-                    "#f46d43"
-                ],
-                [
-                    0.3,
-                    "#fdae61"
-                ],
-                [
-                    0.4,
-                    "#fee090"
-                ],
-                [
-                    0.5,
-                    "#ffffff"
-                ],
-                [
-                    0.6,
-                    "#e0f3f8"
-                ],
-                [
-                    0.7,
-                    "#313695"
-                ],
-                [
-                    0.8,
-                    "#313695"
-                ],
-                [
-                    0.9,
-                    "#3C2200"
-                ],
-                [
-                    1,
-                    "#000"
-                ]
-            ];
+            var scl = [[0, "#a50026"], [0.1, "#d73027"], [0.2, "#f46d43"], [0.3, "#fdae61"], [0.4, "#fee090"], [0.5, "#ffffff"], [0.6, "#e0f3f8"], [0.7, "#313695"], [0.8, "#313695"], [0.9, "#3C2200"], [1, "#000"]];
             var data = [{
                 type: 'scattermapbox',
                 mode: 'markers',
@@ -154,19 +117,21 @@
             }];
 
             layout = {
+                height: 1000,
+                width: 2000,
                 dragmode: 'zoom',
                 title: 'Deaths by Location From Cholera, London, August 19th, 1854 to September 29th 1854',
                 mapbox: {
                     center: {
-                        lat: 51.513603,
-                        lon: -0.136217
+                        lat: 51.51289,
+                        lon: -0.136523
                     },
                     domain: {
                         x: [0, 1],
                         y: [0, 1]
                     },
                     style: 'dark',
-                    zoom: 16.8
+                    zoom: 16.2
                 },
                 margin: {
                     r: 0,

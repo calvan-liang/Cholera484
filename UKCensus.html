@@ -139,74 +139,40 @@
         var totalPieData = [{
             values: total,
             labels: ['Male', 'Female'],
+            marker: {
+                colors: ['#4897D8','#FA6E59']
+            },
             type: 'pie'
         }];
 
 
         var fLayout = {
-            title: 'Female',
+            title: 'Females by Age Range',
             height: 400,
             width: 500
         };
 
         var mLayout = {
-            title: 'Male',
+            title: 'Males by Age Range',
             height: 400,
             width: 500
         };
 
         var tLayout = {
-            title: 'Males v. Females',
+            title: 'Total Male Population v. Total Female Population',
             height: 400,
             width: 500
 
         };
 
-        /*
-        var values = [
-            ["0 to 9", "10 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 to 69", "70 to 79", "80+"],
-            [2075391, 1711664, 1395091, 1073914, 810979, 560534, 351893, 166194, 40772],
-            [2065096, 1711627, 1542876, 1140383, 845260, 592970, 399019, 199326, 55704]
-        ];
+        layout = {
+            title: 'Males and Females by Age Range Living in the United Kingdom, August 19th, 1854 to September 29th 1854'
+        };
 
-        var data = [{
-            type: 'table',
-            header: {
-                values: [["Age Range"], ["Male"],
-                    ["Female"]],
-                align: "center",
-                line: {width: 1, color: 'black'},
-                fill: {color: "grey"},
-                font: {family: "Arial", size: 12, color: "white"}
-            },
-            cells: {
-                values: values,
-                align: "center",
-                line: {color: "black", width: 1},
-                font: {family: "Arial", size: 11, color: ["black"]}
-            }
-        }];
-
-        var malePieData = [{
-            values: [2075391, 1711664, 1395091, 1073914, 810979, 560534, 351893, 166194, 40772],
-            labels: ["0 to 9", "10 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 to 69", "70 to 79", "80+"],
-            type: 'pie'
-        }];
-
-
-        var femalePieData = [{
-            values: [2065096, 1711627, 1542876, 1140383, 845260, 592970, 399019, 199326, 55704],
-            labels: ["0 to 9", "10 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 to 69", "70 to 79", "80+"],
-            type: 'pie'
-        }];
-
-
-
-        */
         Plotly.newPlot('malePie', malePieData, mLayout);
         Plotly.newPlot('femalePie', femalePieData, fLayout);
         Plotly.newPlot('totalPie', totalPieData, tLayout);
-        Plotly.plot('table', data);
+        Plotly.plot('table', data, layout);
 
     })
 </script>
